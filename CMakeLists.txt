@@ -61,6 +61,8 @@ file(GLOB QUERIES queries/*.scm)
 install(FILES ${QUERIES}
         DESTINATION "${CMAKE_INSTALL_DATADIR}/tree-sitter/queries/python")
 
-add_custom_target(ts-test "${TREE_SITTER_CLI}" test
-                  WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
-                  COMMENT "tree-sitter test")
+if(NOT TARGET ts-test)
+        add_custom_target(ts-test "${TREE_SITTER_CLI}" test
+                                                                                WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+                                                                                COMMENT "tree-sitter test")
+endif()
